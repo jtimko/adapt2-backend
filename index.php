@@ -5,8 +5,10 @@
   require('header.php');
  ?>
     <div class="row">
-      <div>
         <div class="col-8 mx-auto">
+          <div id="newJobs">
+            <a href="newjobs.php"><button class="btn btn-primary my-2">New Jobs</button></a>
+          </div><!--end of newJobs-->
           <table class="table table-hover">
             <thead>
               <tr>
@@ -33,6 +35,5 @@
             </tbody>
           </table><!--end of table-->
         </div><!--end of col-->
-      </div><!--end of random div-->
     </div><!--end of row-->
 <?php require('footer.php');
