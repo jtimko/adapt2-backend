@@ -28,7 +28,7 @@
 
     // For contacts.php. Grab the contacts in the database and display.
     public function listContacts() {
-      $sql = "SELECT * FROM contacts";
+      $sql = "SELECT * FROM contacts ORDER BY f_name ASC";
       $stmt = $this->dbc->prepare($sql);
       $stmt->execute();
 
