@@ -6,10 +6,10 @@
  ?>
     <div class="row">
         <div class="col-8 mx-auto">
+            <button class="btn btn-success my-2" id="showContact">
+                Add New Contact
+            </button><!--end of id#showContact-->
             <form>
-                <button class="btn btn-success my-2" id="showContact">
-                    Add New Contact
-                </button><!--end of id#showContact-->
                 <div id="newContact">
                     <label for="fName">Full Name</label>
                     <input type="text" class="form-control" id="fName" placeholder="John Smith" />
@@ -18,6 +18,7 @@
                     <label for="telephone">Telephone</label>
                     <input type="text" class="form-control" id="telephone" placeholder="7074444444" />
                 </div><!--end of id#newContact-->
+            
                 <div class="form-group">
                     <label for="emailInput">Email Address</label>
                     <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" />

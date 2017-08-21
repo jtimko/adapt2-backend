@@ -11,5 +11,10 @@ var contact = document.getElementById('newContact');
 
 // on button click, set showContact css display to "block"
 button.onclick = function() {
-    contact.style.display = "block";
+    if (contact.style.display === 'none') {
+        contact.style.display = 'block';
+    } else {
+        contact.style.display = 'none';
+    }
+    
 }
