@@ -20,9 +20,16 @@
                 </div><!--end of id#newContact-->
             
                 <div class="form-group">
-                    <label for="emailInput">Email Address</label>
-                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" />
-                </div>
+                    <label for="selectContact">Select Contact</label>
+                    <select class="form-control" id="selectContact">
+                        <?php 
+                            $contacts = $db->listContacts();
+                                for ($i=0; $i<2; $i++) { // needs to be fixed. switch to length or end of file.
+                                    echo "<option id='" . $contacts[$i]['contact_id'] . "'>" . $contacts[$i]['f_name'] . "</option>";
+                                }
+                        ?>
+                    </select><!--end of select-->
+                </div><!--end of form-group-->
             </form>
         </div><!--end of col-->
     </div><!--end of row-->
