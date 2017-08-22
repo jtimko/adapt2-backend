@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php
   require('connection.php');
   require('header.php');
