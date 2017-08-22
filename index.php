@@ -3,7 +3,7 @@
   require('header.php');
  ?>
     <div class="row">
-        <div class="col-8 mx-auto">
+        <div class="col-8 mx-auto my-5">
           <div id="newJobs">
             <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#newJobsModal">
               Add New Job
@@ -120,7 +120,7 @@
 
                 foreach($posts as $p) {
                   echo "<tr>";
-                  echo "<td>" . $p['job_title'] . "</td>";
+                  echo "<td><a href='title.php?id=" . $p['jobs_id'] . "'>" . $p['job_title'] . "</a></td>";
                   echo "<td>" . $p['f_name'] . "</td>";
                   echo "<td>" . $p['cat_name'] . "</td>";
                   echo "<td>" . $p['job_created'] . "</td>";

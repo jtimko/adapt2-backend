@@ -14,7 +14,7 @@
 
     // Generate the data to display on the backend home page. Grabs current jobs and displays them in the table.
     public function latestJobs() {
-      $sql = "SELECT contacts.f_name, jobs.job_title, categories.cat_name, jobs.job_created
+      $sql = "SELECT contacts.f_name, jobs.jobs_id, jobs.job_title, categories.cat_name, jobs.job_created
               FROM ((jobs
                 INNER JOIN categories ON jobs.job_cat = categories.category_id)
                 INNER JOIN contacts ON jobs.contact_id = contacts.contact_id);";
@@ -41,6 +41,19 @@
       $sql = "SELECT * FROM categories";
       $stmt = $this->dbc->prepare($sql);
       $stmt->execute();
+
+      $results = $stmt->fetchAll();
+
+      return $results;
+    }
+
+    public function getJobsById($id) {
+      $stmt = $this->dbc->prepare("SELECT jobs.job_title, jobs.job_descr, jobs.job_price, jobs.job_created, contacts.f_name, contacts.company, categories.cat_name
+                                    FROM ((jobs 
+                                          INNER JOIN categories ON categories.category_id = jobs.job_cat)
+                                          INNER JOIN contacts on contacts.contact_id = jobs.contact_id)
+                                    WHERE jobs.jobs_id = :id");
+      $stmt->execute(array(":id" => $id));
 
       $results = $stmt->fetchAll();
 
