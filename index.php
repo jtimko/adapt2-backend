@@ -27,37 +27,47 @@
                   </button><!--end of button-->
                 </div><!--end of modal-header -->
                 <div class="modal-body">
-                  <form>
+                  <form action="addjobs.php" method="POST">
                     <div class="form-group">
                       <label for="selectContact">Select Contact</label>
-                      <select class="form-control" id="selectContact">
+                      <select class="form-control" name="selectContact">
                         <option id="0">None</option>
                         <?php 
                           $contacts = $db->listContacts();
                             foreach($contacts as $c) {
-                              echo "<option id='" . $c['contact_id'] . "'>" . $c['f_name'] . "</option>";
+                              echo "<option value='" . $c['contact_id'] . "'>" . $c['f_name'] . "</option>";
                             }
                         ?>
                       </select><!--end of select-->
 
                       <label for="jobTitle">Job Title</label>
-                      <input type="text" class="form-control" id="jobTitle" placeholder="Facebook.com for Mark Zuckerberg" />
+                      <input type="text" class="form-control" name="jobTitle" placeholder="Facebook.com for Mark Zuckerberg" />
 
                       <label for="jobDesc">Job Description</label>
-                      <textarea class="form-control" id="jobDesc" placeholder="Tell me about this job.."></textarea>
-                  
+                      <textarea class="form-control" name="jobDesc" placeholder="Tell me about this job.."></textarea>
+                      
+                      <label for="selectCat">Select Category</label>
+                      <select class="form-control" name="selectCat">
+                        <?php 
+                            $cat = $db->listCategories();
+                              foreach($cat as $c) {
+                                echo "<option value='" . $c['category_id'] . "'>" . $c['cat_name'] . "</option>";
+                              }
+                          ?>
+                      </select>
+
                       <label for="jobPrice">Price</label>
                       <div class="input-group">
                         <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control" id="jobPrice" placeholder="How much..">
+                        <input type="text" class="form-control" name="jobPrice" placeholder="How much..">
                       </div><!--end of input-group-->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Save Changes</button>
+                      </div><!--end of modal-footer-->
                     </div><!--end of form-group-->
                   </form><!--end of form-->
                 </div><!--end of modal-body-->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save Changes</button>
-                </div><!--end of modal-footer-->
               </div><!-- end of modal-content-->
             </div><!--end of modal-dialog-->
           </div><!--end of modal-->
@@ -100,8 +110,8 @@
           <table class="table table-hover">
             <thead>
               <tr>
+                <td>Job Title</td>
                 <td>Name</td>
-                <td>Company</td>
                 <td>Category</td>
                 <td>Started</td>
               </tr>
@@ -110,13 +120,12 @@
               <?php
                 $posts = $db->latestJobs();
 
-
-                for ($i = 0; $i < 2; $i++) {
+                foreach($posts as $p) {
                   echo "<tr>";
-                  echo "<td>" . $posts[$i]['f_name'] . "</td>";
-                  echo "<td>" . $posts[$i]['company'] . "</td>";
-                  echo "<td>" . $posts[$i]['cat_name'] . "</td>";
-                  echo "<td>" . $posts[$i]['job_created'] . "</td>";
+                  echo "<td>" . $p['job_title'] . "</td>";
+                  echo "<td>" . $p['f_name'] . "</td>";
+                  echo "<td>" . $p['cat_name'] . "</td>";
+                  echo "<td>" . $p['job_created'] . "</td>";
                   echo "</tr>";
                 }
             ?>

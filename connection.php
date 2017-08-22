@@ -14,7 +14,7 @@
 
     // Generate the data to display on the backend home page. Grabs current jobs and displays them in the table.
     public function latestJobs() {
-      $sql = "SELECT contacts.f_name, contacts.company, categories.cat_name, jobs.job_created
+      $sql = "SELECT contacts.f_name, jobs.job_title, categories.cat_name, jobs.job_created
               FROM ((jobs
                 INNER JOIN categories ON jobs.job_cat = categories.category_id)
                 INNER JOIN contacts ON jobs.contact_id = contacts.contact_id);";
@@ -37,11 +37,28 @@
       return $results;
     }
 
+    public function listCategories() {
+      $sql = "SELECT * FROM categories";
+      $stmt = $this->dbc->prepare($sql);
+      $stmt->execute();
+
+      $results = $stmt->fetchAll();
+
+      return $results;
+    }
+
+    // For the modal on index.php. Adds contacts to the db once verified on addcontacts.php
     public function addContacts($fName, $company, $phone) {
       $stmt = $this->dbc->prepare("INSERT INTO contacts(f_name, company, telephone)
                                    VALUES(:f_name, :company, :phone)");
-      $stmt->execute(array(":f_name" => $fName, ":company" => $company, ":phone" => $phone));
-                                  
+      $stmt->execute(array(":f_name" => $fName, ":company" => $company, ":phone" => $phone));                            
+    }
+
+    // For the modal on index.php. Adds jobs to the db once verified on addjobs.php
+    public function addJobs($s_id, $jobTitle, $jobDesc, $c_id, $jobPrice) {
+      $stmt = $this->dbc->prepare("INSERT INTO jobs(job_title, job_descr, contact_id, job_cat, job_created, job_price)
+                                   VALUES(:jobTitle, :jobDesc, :s_id, :c_id, NOW(), :jobPrice)");
+      $stmt->execute(array(":jobTitle" => $jobTitle, ":jobDesc" => $jobDesc, ":s_id" => $s_id, ":c_id" => $c_id, ":jobPrice" => $jobPrice));                            
     }
 
 

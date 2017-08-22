@@ -1,6 +1,11 @@
 <?php
     require('connection.php');
 
+   /****************************************
+        Just typical proof checking input data
+        to avoid mistakes or hacking attempts
+    ***************************************/
+
    if (isset($_POST['fName'])) {
         $message = '';
         if (strlen($_POST['fName']) > 2) {
@@ -20,8 +25,8 @@
         }
 
         if ($f_name && $company && $tele) {
-            $db->addContacts($f_name, $company, $tele);
-            header('Location: index.php');
+            $db->addContacts($f_name, $company, $tele); // adds the data to the db
+            header('Location: index.php'); // Returns back to admin index 
         } else {
             echo $message;
         }
