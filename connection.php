@@ -37,6 +37,13 @@
       return $results;
     }
 
+    public function addContacts($fName, $company, $phone) {
+      $stmt = $this->dbc->prepare("INSERT INTO contacts(f_name, company, telephone)
+                                   VALUES(:f_name, :company, :phone)");
+      $stmt->execute(array(":f_name" => $fName, ":company" => $company, ":phone" => $phone));
+                                  
+    }
+
 
   }
 

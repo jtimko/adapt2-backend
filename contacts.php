@@ -16,12 +16,11 @@
             <?php
               $posts = $db->listContacts();
 
-
-              for ($i = 0; $i < 2; $i++) {
+              foreach($posts as $p) {
                 echo "<tr>";
-                echo "<td>" . $posts[$i]['f_name'] . "</td>";
-                echo "<td>" . $posts[$i]['company'] . "</td>";
-                echo "<td>" . $posts[$i]['telephone'] . "</td>";
+                echo "<td>" . $p['f_name'] . "</td>";
+                echo "<td>" . $p['company'] . "</td>";
+                echo "<td>" . $p['telephone'] . "</td>";
                 echo "</tr>";
               }
            ?>

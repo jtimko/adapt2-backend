@@ -34,8 +34,8 @@
                         <option id="0">None</option>
                         <?php 
                           $contacts = $db->listContacts();
-                            for ($i=0; $i<2; $i++) { // needs to be fixed. switch to length or end of file.
-                                echo "<option id='" . $contacts[$i]['contact_id'] . "'>" . $contacts[$i]['f_name'] . "</option>";
+                            foreach($contacts as $c) {
+                              echo "<option id='" . $c['contact_id'] . "'>" . $c['f_name'] . "</option>";
                             }
                         ?>
                       </select><!--end of select-->
@@ -73,23 +73,25 @@
                   </button><!--end of button-->
                 </div><!--end of modal-header -->
                 <div class="modal-body">
-                  <form>
+                  <form action="addcontacts.php" method="POST">
                     <div class="form-group">
                       <label for="fName">Full Name</label>
-                      <input type="text" class="form-control" id="fName" placeholder="John Smith" />
+                      <input type="text" class="form-control" name="fName" placeholder="John Smith" />
 
                       <label for="company">Company</label>
-                      <input type="text" class="form-control" id="company" placeholder="Adapt2 Inc.," />
+                      <input type="text" class="form-control" name="company" placeholder="Adapt2 Inc.," />
                     
                       <label for="telephone">Telephone</label>
-                      <input type="text" class="form-control" id="telephone" placeholder="7074444444" />
+                      <input type="text" class="form-control" name="telephone" placeholder="7074444444" />
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="submit" value="submit">Save Changes</button>
+                      </div><!--end of modal-footer-->
                     </div><!--end of form-group-->
                   </form><!--end of form-->
                 </div><!--end of modal-body-->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save Changes</button>
-                </div><!--end of modal-footer-->
+
               </div><!-- end of modal-content-->
             </div><!--end of modal-dialog-->
           </div><!--end of modal-->
