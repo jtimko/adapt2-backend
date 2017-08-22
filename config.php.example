@@ -1,3 +1,5 @@
-  define("DBUSER", "user"); // database username
-  define("DBPASS", "password"); // database password
-  define("DBNAME", "db name"); // database username
+ <?php
+    define("DBUSER", "user"); // database username
+    define("DBPASS", "password"); // database password
+    define("DBNAME", "db name"); // database username
+  ?>
