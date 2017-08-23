@@ -12,7 +12,7 @@
             <h4><?php echo $results[0]['f_name']; ?> (<?php echo $results[0]['company']; ?>)</h4>
             <h5><?php echo $results[0]['cat_name']; ?></h5>
             <p><b>$<?php echo $results[0]['job_price']; ?></b></a>
-            <p><?php echo $results[0]['job_descr']; ?></p>
+            <p><?php echo nl2br($results[0]['job_descr']); ?></p>
         </div><!--end of col-->
     </div><!--end of row-->
 

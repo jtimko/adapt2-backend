@@ -15,12 +15,16 @@
           <tbody>
             <?php
               $posts = $db->listContacts();
-
+              
               foreach($posts as $p) {
+                // split the phone string to proper format.
+                // 7074444444 -> 707-444-4444
+                preg_match("/(\d{3})(\d{3})(\d{4})/",$p['telephone'],$phone);
+
                 echo "<tr>";
-                echo "<td>" . $p['f_name'] . "</td>";
+                echo "<td><a href='person.php?id=" . $p['contact_id'] . "'>" . $p['f_name'] . "</a></td>";
                 echo "<td>" . $p['company'] . "</td>";
-                echo "<td>" . $p['telephone'] . "</td>";
+                echo "<td>" . $phone[1] . "-" . $phone[2] . "-" . $phone[3] . "</td>";
                 echo "</tr>";
               }
            ?>
