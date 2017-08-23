@@ -13,7 +13,7 @@
     <div class="row my-5">
         <div class="col-4 mx-auto">
             <h3><?php echo $results[0]['f_name']; ?></h3>
-            <h4><?php echo $results[0]['company']; ?> (<?php echo $results[0]['company']; ?>)</h4>
+            <h4><?php echo $results[0]['company']; ?></h4>
             <h5><?php echo "$phone[1]-$phone[2]-$phone[3]"; ?></h5>
         </div><!--end of col-->
         <div class="col-4 mx-auto">
