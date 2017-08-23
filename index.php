@@ -121,7 +121,7 @@
                 foreach($posts as $p) {
                   echo "<tr>";
                   echo "<td><a href='title.php?id=" . $p['jobs_id'] . "'>" . $p['job_title'] . "</a></td>";
-                  echo "<td>" . $p['f_name'] . "</td>";
+                  echo "<td><a href='person.php?id=" . $p['contact_id'] . "'>" . $p['f_name'] . "</a></td>";
                   echo "<td>" . $p['cat_name'] . "</td>";
                   echo "<td>" . $p['job_created'] . "</td>";
                   echo "</tr>";

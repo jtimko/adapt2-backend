@@ -14,7 +14,7 @@
 
     // Generate the data to display on the backend home page. Grabs current jobs and displays them in the table.
     public function latestJobs() {
-      $sql = "SELECT contacts.f_name, jobs.jobs_id, jobs.job_title, categories.cat_name, jobs.job_created
+      $sql = "SELECT contacts.f_name, contacts.contact_id, jobs.jobs_id, jobs.job_title, categories.cat_name, jobs.job_created
               FROM ((jobs
                 INNER JOIN categories ON jobs.job_cat = categories.category_id)
                 INNER JOIN contacts ON jobs.contact_id = contacts.contact_id);";
@@ -37,6 +37,7 @@
       return $results;
     }
 
+    // This helps list all the categories available.
     public function listCategories() {
       $sql = "SELECT * FROM categories";
       $stmt = $this->dbc->prepare($sql);
@@ -47,12 +48,34 @@
       return $results;
     }
 
+    // This function is for title.php. It grabs all the data for a specific job
     public function getJobsById($id) {
-      $stmt = $this->dbc->prepare("SELECT jobs.job_title, jobs.job_descr, jobs.job_price, jobs.job_created, contacts.f_name, contacts.company, categories.cat_name
+      $stmt = $this->dbc->prepare("SELECT jobs.job_title, jobs.job_descr, jobs.job_price, jobs.job_created, 
+                                          contacts.f_name, contacts.company, categories.cat_name
                                     FROM ((jobs 
                                           INNER JOIN categories ON categories.category_id = jobs.job_cat)
                                           INNER JOIN contacts on contacts.contact_id = jobs.contact_id)
                                     WHERE jobs.jobs_id = :id");
+      $stmt->execute(array(":id" => $id));
+
+      $results = $stmt->fetchAll();
+
+      return $results;
+    }
+
+    // this is for person.php to grab all the contact information for a specific contact
+    public function getPersonById($id) {
+      $stmt = $this->dbc->prepare("SELECT * FROM contacts WHERE contact_id = :id");
+      $stmt->execute(array(":id" => $id));
+      
+      $results = $stmt->fetchAll();
+
+      return $results;
+    }
+
+    // this function is also for person.php but helps grab all the jobs done for a specific contact
+    public function getJobsListById($id) {
+      $stmt = $this->dbc->prepare("SELECT jobs_id, job_title FROM jobs WHERE contact_id = :id");
       $stmt->execute(array(":id" => $id));
 
       $results = $stmt->fetchAll();
@@ -73,7 +96,6 @@
                                    VALUES(:jobTitle, :jobDesc, :s_id, :c_id, NOW(), :jobPrice)");
       $stmt->execute(array(":jobTitle" => $jobTitle, ":jobDesc" => $jobDesc, ":s_id" => $s_id, ":c_id" => $c_id, ":jobPrice" => $jobPrice));                            
     }
-
 
   }
 

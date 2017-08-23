@@ -4,8 +4,6 @@
 
     if (isset($_GET['id'])) {
         $results = $db->getJobsById($_GET['id']);
-
-        //print_r($results);
     }
 ?>
     <div class="row">
