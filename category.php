@@ -14,7 +14,6 @@
                 foreach($results as $r) {
                     echo "<li><a href='title.php?id=" . $r['jobs_id'] . "'>" . $r['job_title'] . "</a></li>"; 
                 }
-                
             ?>
         </ul>
       </div><!--end of col-->
