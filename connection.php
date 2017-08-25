@@ -108,6 +108,12 @@
       $stmt->execute(array(":jobTitle" => $jobTitle, ":jobDesc" => $jobDesc, ":s_id" => $s_id, ":c_id" => $c_id, ":jobPrice" => $jobPrice));                            
     }
 
+    public function updateJobs($jobId, $jobTitle, $jobDesc, $jobPrice) {
+      $stmt = $this->dbc->prepare("UPDATE jobs SET job_title = :jobTitle, job_descr = :jobDesc, job_price = :jobPrice 
+                                    WHERE jobs_id = :jobId");
+      $stmt->execute(array(":jobTitle" => $jobTitle, ":jobdesc" => $jobDesc, ":jobPrice" => $jobPrice, ":jobId" => $jobId));
+    }
+
   }
 
   $db = new Connection();
