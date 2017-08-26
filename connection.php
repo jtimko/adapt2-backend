@@ -111,7 +111,7 @@
     public function updateJobs($jobId, $jobTitle, $jobDesc, $jobPrice) {
       $stmt = $this->dbc->prepare("UPDATE jobs SET job_title = :jobTitle, job_descr = :jobDesc, job_price = :jobPrice 
                                     WHERE jobs_id = :jobId");
-      $stmt->execute(array(":jobTitle" => $jobTitle, ":jobdesc" => $jobDesc, ":jobPrice" => $jobPrice, ":jobId" => $jobId));
+      $stmt->execute(array(":jobTitle" => $jobTitle, ":jobDesc" => $jobDesc, ":jobPrice" => $jobPrice, ":jobId" => $jobId));
     }
 
   }

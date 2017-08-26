@@ -42,7 +42,7 @@
         }
 
         if ($jobId && $jobTitle && $jobDesc && $jobPrice) {
-            $db->updatejobs($jobid, $jobTitle, $jobDesc, $jobPrice); // adds the data to the db
+            $db->updatejobs($jobId, $jobTitle, $jobDesc, $jobPrice); // adds the data to the db
             header('Location: title.php?id=' . $jobId); // Returns back to admin index 
         } else {
             echo $message;
